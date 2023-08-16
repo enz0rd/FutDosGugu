@@ -24,6 +24,12 @@ module.exports = {
       telefone: {
         type: Sequelize.STRING
       },
+      biografia: {
+        type: Sequelize.STRING
+      },
+      ativo: {
+        type: Sequelize.INTEGER
+      },
       id_posicao: {
         type: Sequelize.INTEGER,
         references: {
@@ -35,6 +41,13 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'Cidades',
+          key: 'id'
+        }
+      },
+      id_estado: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Estados',
           key: 'id'
         }
       },

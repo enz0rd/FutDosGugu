@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.belongsTo(models.Posicoes, { foreignKey: 'id_posicao' })
       User.belongsTo(models.Cidades, { foreignKey: 'id_cidade' })
+      User.belongsTo(models.Estados, { foreignKey: 'id_estado' })
       User.belongsTo(models.Equipes, { foreignKey: 'id_equipe' })
     }
   }
@@ -27,8 +28,11 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     cpf: DataTypes.STRING,
     telefone: DataTypes.STRING,
+    biografia: DataTypes.STRING,
+    ativo: DataTypes.INTEGER,
     id_posicao: DataTypes.INTEGER,
     id_cidade: DataTypes.INTEGER,
+    id_estado: DataTypes.INTEGER,
     id_equipe: DataTypes.INTEGER
   }, {
     sequelize,

@@ -12,8 +12,12 @@ module.exports = {
       nome_cidade: {
         type: Sequelize.STRING
       },
-      sigla_estado: {
-        type: Sequelize.STRING
+      id_estado: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'estados',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,

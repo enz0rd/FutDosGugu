@@ -30,10 +30,23 @@ module.exports = {
       link_grupo_zap: {
         type: Sequelize.STRING
       },
+      observacoes: {
+        type: Sequelize.STRING
+      },
+      ativo: {
+        type: Sequelize.INTEGER
+      },
       id_cidade_evento: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Cidades',
+          key: 'id'
+        }
+      },
+      id_estado: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Estados',
           key: 'id'
         }
       },

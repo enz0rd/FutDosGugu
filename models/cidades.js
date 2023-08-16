@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Cidades.belongsTo(models.Estados, { foreignKey: 'id_estado' })
     }
   }
   Cidades.init({
@@ -20,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true
     },
     nome_cidade: DataTypes.STRING,
-    sigla_estado: DataTypes.STRING
+    id_estado: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Cidades',

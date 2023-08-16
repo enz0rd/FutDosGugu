@@ -17,11 +17,11 @@ app.listen(port, () => {
     if (req.accepts("html")) {
       var error = [
         {
-          title: "404 not found",
-          message: "Page not found",
+          title: "404",
+          message: "Página não encontrada",
         },
       ];
-      res.render("/src/views/error", { data: error });
+      res.render("../views/error", { data: error });
     }
   });
 });

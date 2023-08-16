@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Inscricoes.init({
     id_user: DataTypes.INTEGER,
-    id_evento: DataTypes.INTEGER
+    id_evento: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Inscricoes',
