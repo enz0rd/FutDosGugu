@@ -38,7 +38,12 @@ async function checkCookies(req, res) {
           console.log(`Não autorizado`)
           return false
       } else {
-          var result = await db.User.findOne({ where: { email: atob(sessionId) } })
+          var result = await db.User.findOne({ 
+            where: { 
+              email: atob(sessionId),
+              ativo: 1 
+            } 
+          })
           try {
               if (result) {
                   if (maxAge < Date.now()) {

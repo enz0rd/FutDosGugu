@@ -5,6 +5,8 @@ const port = 3000;
 const routes = require("./routes/index.js");
 
 routes(app);
+
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
