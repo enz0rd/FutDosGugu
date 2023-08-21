@@ -9,4 +9,8 @@ router.post("/cadastrar", CadastroController.trySignup);
 router.put("/atualizar/:id", CadastroController.attCadastro);
 router.delete("/excluir/:id", CadastroController.delCadastro);
 
+// user methods
+
+router.get("/busca", CadastroController.getByName);
+
 module.exports = router;
