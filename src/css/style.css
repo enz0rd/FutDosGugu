@@ -10,6 +10,7 @@
 .user_card {
     display: flex;
     width: 10rem;
+    height: 10rem;
     flex-direction: column;
     margin: 0.5rem;
     background-color: azure;
@@ -21,7 +22,7 @@
     padding-bottom: 0.1rem;
 }
 
-.city_card {
+.city_card, .state_card, .team_card {
     display: flex;
     width: 10rem;
     height: 7rem;
@@ -36,7 +37,23 @@
     padding-bottom: 0.1rem;
 }
 
-.city_card p, h3, h4 {
+
+.city_card p, .city_card h3, .city_card h4 {
+    gap: 0px;
+    margin: auto;
+    justify-content: center;
+}
+.state_card p, .state_card h3, .state_card h4 {
+    gap: 0px;
+    margin: auto;
+    justify-content: center;
+}
+.user_card p, .user_card h3, .user_card h4 {
+    gap: 0px;
+    margin: auto;
+    justify-content: center;
+}
+.team_card p, .team_card h3, .team_card h4 {
     gap: 0px;
     margin: auto;
     justify-content: center;
