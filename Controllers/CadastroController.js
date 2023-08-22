@@ -1,7 +1,5 @@
 const path = require("path");
 const db = require("../models");
-const cookieParser = require("cookie-parser");
-const { where } = require("sequelize");
 
 class CadastroController {
   //Get feito
@@ -93,7 +91,7 @@ class CadastroController {
           res.cookie("sessionId", sessionId, { value: true, maxAge: 3600000 });
           res.cookie("expirationTime", expirationTime, { maxAge });
           console.log("redirecting");
-          res.redirect("/home");
+          res.redirect("/");
         } catch (error) {
           console.log(`Erro ao listar: ${error.message}`);
           const error_message = [];
@@ -124,7 +122,7 @@ class CadastroController {
 
   //put feito
   static async attCadastro(req, res) {
-    const { id } = req.params;
+    const id = req.params;
     const updateData = req.body;
     console.log(updateData)
     try {
@@ -142,7 +140,7 @@ class CadastroController {
       if (updateData != null) {
         // Update user's data with the fields from req.body
         await user.update(updateData);
-        await user.update({updatedAt: Date.UTC()});
+        await user.update({ updatedAt: Date.UTC() });
         res.status(200).send({ message: "Usuário atualizado!" });
       } else {
         res.send({ message: "Nenhum dado alterado!" });
@@ -185,50 +183,6 @@ class CadastroController {
       res.render("../views/error", { data: error_message });
     }
   }
-
-  // users methods
-
-  //get by name
-  static async getByName(req,res){
-    let nome = req.query['nome'];
-    var query = `SELECT 
-    u.id, 
-    u.nome, 
-    u.biografia, 
-    p.nome_posicao, 
-    c.nome_cidade, 
-    est.nome_estado,
-    eq.nome_equipe 
-FROM 
-    users u
-JOIN 
-    posicoes p ON u.id_posicao = p.id
-JOIN 
-    cidades c ON u.id_cidade = c.id
-JOIN 
-    estados est ON u.id_estado = est.id
-JOIN 
-    equipes eq ON u.id_equipe = eq.id
-WHERE 
-    u.nome LIKE '%${nome}%';`;
-    try{
-      let result = await db.sequelize.query(query);
-      console.log(result)
-      if (result[0].length === 0 && result[1].length === 0) {
-        result = [{ message: "Nenhum usuário encontrado" }];
-      }
-      res.status(200).send({'data':result});
-    }catch(error){
-      console.log(`Erro ao listar: ${error.message}`);
-      const error_message = [];
-      error_message.push({
-        title: "Falha na consulta",
-        message: error.message,
-      });
-      res.render("../views/error", { data: error_message });
-    }
-  }
-
 
 }
 

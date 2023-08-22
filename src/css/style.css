@@ -1,0 +1,43 @@
+* {
+    text-decoration: none;
+}
+
+.data {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user_card {
+    display: flex;
+    width: 10rem;
+    flex-direction: column;
+    margin: 0.5rem;
+    background-color: azure;
+    border: 1px solid #000;
+    border-radius: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+}
+
+.city_card {
+    display: flex;
+    width: 10rem;
+    height: 7rem;
+    flex-direction: column;
+    margin: 0.5rem;
+    background-color: azure;
+    border: 1px solid #000;
+    border-radius: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+}
+
+.city_card p, h3, h4 {
+    gap: 0px;
+    margin: auto;
+    justify-content: center;
+}
