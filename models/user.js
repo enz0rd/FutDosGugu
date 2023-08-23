@@ -33,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
     id_posicao: DataTypes.INTEGER,
     id_cidade: DataTypes.INTEGER,
     id_estado: DataTypes.INTEGER,
-    id_equipe: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'User',

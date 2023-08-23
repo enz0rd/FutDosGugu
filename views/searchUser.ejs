@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca - FutDosGugu</title>
+    <link rel="stylesheet" href="../src/css/style.css">
+</head>
+
+
+<body>
+    <h1>
+        <%= data[0].message %>
+    </h1>
+    <form id="searchForm">
+        <select name="dropdown" id="dropdown">
+            <option value="">Selecione</option>
+            <option value="equipe">Equipe</option>
+            <option value="cidade">Cidade</option>
+            <option value="estado">Estado</option>
+            <option value="posicao">Posição</option>
+        </select>
+        <input type="text" id="query">
+        <button type="button" id="post">Pesquisar</button>
+    </form>
+
+    <div id="data" class="data">
+        <!-- Data will be displayed here -->
+    </div>
+
+    <script src="../src/js/searchUser.js"></script>
+</body>
+
+</html>

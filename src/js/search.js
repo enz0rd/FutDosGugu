@@ -45,17 +45,18 @@ function performSearch() {
             var paragraph = document.createElement("p");
             paragraph.textContent = data[0].message;
             data_view.appendChild(paragraph);
+          } else {
+            if (dropdownValue == "user") {
+              listarUsers(data);
+            } else if (dropdownValue == "cidade") {
+              listarCidades(data);
+            } else if (dropdownValue == "estado") {
+              listarEstados(data);
+            } else if (dropdownValue == "equipe") {
+              listarEquipes(data);
+            }
           }
 
-          if (dropdownValue == "user") {
-            listarUsers(data);
-          } else if (dropdownValue == "cidade") {
-            listarCidades(data);
-          } else if (dropdownValue == "estado") {
-            listarEstados(data);
-          } else if (dropdownValue == "equipe") {
-            listarEquipes(data);
-          }
         })
         .catch((error) => {
           console.error("Ocorreu um erro:", error);
@@ -77,7 +78,7 @@ function listarUsers(data) {
     var div = document.createElement("div");
     var paragraph = document.createElement("p");
 
-    link.setAttribute('href', `/user/${dado.id}`)
+    link.setAttribute('href', `/usuario/${dado.id}`)
 
     var nome = document.createElement("h3");
     var posicao = document.createElement("h4");
