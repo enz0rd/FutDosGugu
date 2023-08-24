@@ -15,6 +15,12 @@ module.exports = {
       observacoes: {
         type: Sequelize.STRING
       },
+      recrutando: {
+        type: Sequelize.INTEGER
+      },
+      visibilidade: {
+        type: Sequelize.STRING
+      },
       ativo: {
         type: Sequelize.INTEGER
       },

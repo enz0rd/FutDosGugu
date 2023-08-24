@@ -1,4 +1,4 @@
-const HomeController = require("../Controllers/HomeController.js");
+const { HomeController } = require("../Controllers/HomeController.js");
 const express = require("express");
 const router = express.Router();
 

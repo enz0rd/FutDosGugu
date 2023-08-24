@@ -21,6 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     nome_equipe: DataTypes.STRING,
     observacoes: DataTypes.STRING,
+    recrutando: DataTypes.INTEGER,
+    visibilidade: DataTypes.STRING,
     ativo: DataTypes.INTEGER,
   }, {
     sequelize,
