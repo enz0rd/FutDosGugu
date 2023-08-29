@@ -13,7 +13,7 @@ class EquipeController {
         console.log(data);
         res.render("../views/createEquipe", { data: data });
       } else {
-        res.sendFile(path.join(__dirname, "../views/signup.html"));
+        res.redirect('/entrar');
       }
     } catch (error) {
       const error_message = [];
@@ -41,7 +41,7 @@ class EquipeController {
           });
         }
       } else {
-        res.sendFile(path.join(__dirname, "../views/signup.html"));
+        res.redirect('/entrar');
       }
     } catch (error) {
       const error_message = [];
@@ -57,7 +57,7 @@ class EquipeController {
     try {
       const check = checkCookies(req, res);
 
-      if(check == true) {
+      if (check == true) {
         const data = await db.Equipes.findAll({
           where: {
             visibilidade: "public",
@@ -79,6 +79,86 @@ class EquipeController {
       });
       res.render("../views/error", { data: error_message });
     }
+  }
+
+  static async attEquipe(req, res) {
+    try {
+      console.log(req.cookies.sessionId);
+      const check = checkCookies(req, res);
+      if (check == true) {
+        let id = req.params.id;
+        let body = req.body;
+        console.log("update atualiza Equipe");
+        const attTeam = await atualizaEquipe(body, id);
+        if (attTeam === true) {
+          res.send({ message: "Equipe atualizada!" });
+        } else {
+          res.send({
+            message: `Não foi possível atualizar equipe | ${newTeam.message}`,
+          });
+        }
+      } else {
+        res.redirect('/entrar');
+      }
+    } catch (error) {
+      const error_message = [];
+      error_message.push({
+        title: "Error",
+        message: error.message,
+      });
+      res.render("../views/error", { data: error_message });
+    }
+  }
+
+  static async delEquipe(req, res) {
+    try {
+      console.log(req.cookies.sessionId);
+      const check = checkCookies(req, res);
+      if (check) {
+        const id_eq = req.params.id;
+        console.log("delete deletar equipe");
+        const check = await db.Equipes.findOne({ where: { id: id_eq } });
+        if (check !== null) {
+          const deleteEquipe = await check.update({ ativo: 0 });
+          res.send({ message: "Equipe excluída!" });
+        } else {
+          res.send({ message: "Equipe não encontrada!" });
+        }
+      } else {
+        res.redirect('/entrar');
+      }
+    } catch (error) {
+      const error_message = [];
+      error_message.push({
+        title: "Error",
+        message: error.message,
+      });
+      res.render("../views/error", { data: error_message });
+    }
+  }
+}
+
+async function atualizaEquipe(data, id) {
+  try {
+    var check = await db.Equipes.findOne({
+      where: {
+        id: id.id,
+        ativo: 1,
+      },
+    });
+    if (check !== null) {
+      try {
+        const atualiza = await check.update(data);
+        const atualizado_em = await check.update({ updatedAt: Date.UTC() });
+        return true;
+      } catch (error) {
+        return { message: error.message };
+      }
+    } else {
+      return { message: "Equipe não encontrada, tente novamente" };
+    }
+  } catch (error) {
+    return { message: error.message };
   }
 }
 
