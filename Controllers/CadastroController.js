@@ -5,7 +5,27 @@ class CadastroController {
   //Get feito
   static async getEntrar(req, res) {
     try {
-      res.sendFile(path.join(__dirname, "../views", "signup.html"));
+      var cid = await db.Cidades.findAll({
+        attributes: [
+          'id',
+          'nome_cidade'
+        ],
+        raw: true
+      });
+      var pos = await db.Posicoes.findAll({
+        attributes: [
+          'id',
+          'nome_posicao'
+        ],
+        raw: true
+      });
+      var data = {
+        Cidades: [],
+        Posicoes: [] 
+      }
+      data.Cidades.push(JSON.parse(JSON.stringify(cid)))
+      data.Posicoes.push(JSON.parse(JSON.stringify(pos)))
+      res.render('../views/signup.ejs', { data: data })
     } catch (error) {
       console.log(`Erro ao listar: ${error.message}`);
       const error_message = [];
