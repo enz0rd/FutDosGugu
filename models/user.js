@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsTo(models.Posicoes, { foreignKey: 'id_posicao' })
       User.belongsTo(models.Cidades, { foreignKey: 'id_cidade' })
       User.belongsTo(models.Estados, { foreignKey: 'id_estado' })
-      User.belongsTo(models.Equipes, { foreignKey: 'id_equipe' })
     }
   }
   User.init({

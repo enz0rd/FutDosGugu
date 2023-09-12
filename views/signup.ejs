@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrar - FutDosGugu</title>
+    <script src="../src/js/signin.js"></script>
+    <script src="../src/js/signup.js"></script>
 </head>
+
 <body>
     <div class="container">
         <div class="title">
@@ -12,15 +16,18 @@
         </div>
         <div class="box-form">
             <div class="signin">
-                <form action="/entrar" method="post" id="form-signin" class="form-signin">
+                <h1>Entrar</h1>
+                <form id="form-signin" class="form-signin">
                     <label for="email-signin">Email:</label>
                     <input type="email" name="email-signin" id="email-signin">
                     <label for="password-signin">Senha:</label>
                     <input type="password" name="password-signin" id="password-signin">
+                    <button type="button" id="entrarbtn">Entrar</button>
                 </form>
             </div>
             <div class="signup">
-                <form action="/cadastrar" method="post" id="form-signup" class="form-signup">
+                <h1>Cadastre-se</h1>
+                <form id="form-signup" class="form-signup">
                     <label for="username-signup">Nome:</label>
                     <input type="text" name="username-signup" id="username-signup">
                     <label for="email-signup">Email:</label>
@@ -31,19 +38,27 @@
                     <input type="text" name="cpf-signup" id="cpf-signup">
                     <label for="telefone-signup">Telefone:</label>
                     <input type="tel" name="telefone-signup" id="telefone-signup">
-                    <label for="posicao-signup">posicao:</label>
+                    <label for="posicao-signup">Posição:</label>
                     <select name="posicao-signup" id="posicao-signup">
-                        <option value="1">Goleiro</option>
-                        <option value="2">Zagueiro</option>
-                        <option value="3">Lateral</option>
-                        <option value="4">Volante</option>
-                        <option value="5">Meia</option>
-                        <option value="6">Atacante</option>
+                        <% for(i=0; i < data.Posicoes[0].length; i++) { %>
+                            <option value="<%= data.Posicoes[0][i].id %>">
+                                <%= data.Posicoes[0][i].nome_posicao %>
+                            </option>
+                            <% } %>
                     </select>
-                    
+                    <label for="cidade-signup">Cidade:</label>
+                    <select name="cidade-signup" id="cidade-signup">
+                        <% for(i=0; i < data.Cidades[0].length; i++) { %>
+                            <option value="<%= data.Cidades[0][i].id %>">
+                                <%= data.Cidades[0][i].nome_cidade %>
+                            </option>
+                            <% } %>
+                    </select>
+                    <button id="cadastrobtn">Cadastrar</button>
                 </form>
             </div>
         </div>
     </div>
 </body>
+
 </html>
