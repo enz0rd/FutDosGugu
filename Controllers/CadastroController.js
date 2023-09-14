@@ -53,8 +53,8 @@ class CadastroController {
           const sessionId = btoa(req.body.email);
           const maxAge = 3600000;
           const expirationTime = Date.now() + maxAge;
-          res.cookie("sessionId", sessionId, { value: true, maxAge: 3600000 });
-          res.cookie("expirationTime", expirationTime, { maxAge });
+          res.cookie('sessionId', sessionId, { value: true, maxAge: 3600000 });
+          res.cookie('expirationTime', expirationTime, { maxAge });
           console.log("redirecting");
           res.redirect("/");
         } catch (error) {

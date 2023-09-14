@@ -1,52 +1,45 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const cadastroButton = document.getElementById("cadastrobtn");
-  const entrarButton = document.getElementById("entrarbtn");
-  entrarButton.addEventListener("click", performLogin);
-  entrarButton.addEventListener("click", performSignup);
-});
+  const entrarForm = document.getElementById("form-signin");
 
-function performLogin() {
-  const email = document.getElementById("email-signin").value;
-  const password = document.getElementById("password-signin").value;
+  entrarForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const form = event.target;
+    const email = document.getElementById("email-signin").value;
+    const password = document.getElementById("password-signin").value;
 
-  if (email != "") {
-    if (password != "") {
+    if (email != "") {
+      if (password != "") {
         const requestBody = {
-            email: email,
-            password: password
+          email: `${email}`,
+          password: `${password}`
         };
 
-        // Enviar os dados para a rota /entrar via POST
-        fetch('/entrar', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestBody)
-        })
-
-        // CONTINUE AQUI
-        // CONTINUE AQUI
-        // CONTINUE AQUI    descubra o pq não redireciona com a rota post
-        // CONTINUE AQUI
-        // CONTINUE AQUI
-
-        .then(response => {
-            if (response.status === 200) {
-                // O login foi bem-sucedido, você pode redirecionar o usuário ou executar outras ações aqui
-                console.log('Login bem-sucedido');
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", form.action, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+          if(xhr.readyState === 4) {
+            if(xhr.status === 200) {
+              var contentType = xhr.getResponseHeader("Content-Type");
+              if(contentType && contentType.includes("application/json")) {
+                var jsonResponse = JSON.parse(xhr.responseText);
+                if(jsonResponse.message) {
+                  alert(jsonResponse.message)
+                }
+              } else {
+                window.location.href = '/';
+              }
             } else {
-                // O login falhou, você pode exibir uma mensagem de erro aqui
-                alert('Falha no login');
+              alert("Ocorreu um erro");
             }
-        })
-        .catch(error => {
-            alert('Erro ao fazer o login:', error);
-        });
+          };
+        };
+        xhr.send(JSON.stringify(requestBody));
+      } else {
+        alert("Preencha a sua senha");
+      }
     } else {
-      alert("Preencha a sua senha");
+      alert("Preencha o campo de e-mail!");
     }
-  } else {
-    alert("Preencha o campo de e-mail!");
-  }
-}
+  });
+});

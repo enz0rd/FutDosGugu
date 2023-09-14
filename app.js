@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = 3000;
 const routes = require("./routes/index.js");
+const cookieParser = require("cookie-parser");
 
 routes(app);
 
@@ -10,6 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/'));
+app.use(cookieParser());
 
 app.listen(port, () => {
   console.log(`rodando:

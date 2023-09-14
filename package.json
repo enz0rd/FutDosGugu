@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "install": "npm i express body-parser sequelize bootstrap express-cli ejs path nodemon sequelize-cli",
+    "install": "npm i express body-parser sequelize cookie-parser bootstrap express-cli ejs path nodemon sequelize-cli",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
